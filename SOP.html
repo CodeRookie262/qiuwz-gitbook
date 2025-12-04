@@ -1,0 +1,420 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>搭建教程 (SOP) · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="chapter1.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="SOP.html">
+            
+                <a href="SOP.html">
+            
+                    
+                    搭建教程 (SOP)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="chapter1.html">
+            
+                <a href="chapter1.html">
+            
+                    
+                    第一章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >搭建教程 (SOP)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="gitbook-honkit-搭建与部署-sop">GitBook (HonKit) 搭建与部署 SOP</h1>
+<p>本文档详细记录了如何从零开始搭建一个基于 HonKit (GitBook 替代方案) 的文档/博客系统，并将其自动部署到 GitHub Pages。</p>
+<h2 id="1-环境准备">1. 环境准备</h2>
+<p>在开始之前，请确保你的电脑上安装了以下环境：</p>
+<ul>
+<li><strong>Git</strong>: 用于代码版本控制。</li>
+<li><strong>Node.js</strong>: 建议版本 v18 或更高 (推荐 v20+)。<ul>
+<li>验证命令: <code>node -v</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-项目初始化">2. 项目初始化</h2>
+<h3 id="21-创建并进入目录">2.1 创建并进入目录</h3>
+<pre><code class="lang-bash"><span class="hljs-built_in">mkdir</span> my-gitbook
+<span class="hljs-built_in">cd</span> my-gitbook
+</code></pre>
+<h3 id="22-初始化-nodejs-项目">2.2 初始化 Node.js 项目</h3>
+<p>生成 <code>package.json</code> 文件：</p>
+<pre><code class="lang-bash">npm init -y
+</code></pre>
+<h3 id="23-安装-honkit">2.3 安装 HonKit</h3>
+<p>由于官方 <code>gitbook-cli</code> 已不再维护，我们使用兼容性更好的 <code>honkit</code>：</p>
+<pre><code class="lang-bash">npm install honkit --save-dev
+</code></pre>
+<h3 id="24-修改-packagejson-脚本">2.4 修改 <code>package.json</code> 脚本</h3>
+<p>打开 <code>package.json</code>，在 <code>"scripts"</code> 部分添加启动和构建命令：</p>
+<pre><code class="lang-json"><span class="hljs-string">"scripts"</span>: {
+  <span class="hljs-string">"start"</span>: <span class="hljs-string">"honkit serve"</span>,
+  <span class="hljs-string">"build"</span>: <span class="hljs-string">"honkit build"</span>
+}
+</code></pre>
+<h2 id="3-基础内容配置">3. 基础内容配置</h2>
+<h3 id="31-初始化文件结构">3.1 初始化文件结构</h3>
+<p>在根目录创建以下文件：</p>
+<p><strong>1. README.md</strong> (封面/首页)</p>
+<pre><code class="lang-markdown"><span class="hljs-section"># 文档标题</span>
+
+这里是简介...
+</code></pre>
+<p><strong>2. SUMMARY.md</strong> (目录结构)
+<em>这是 GitBook 的核心文件，决定了左侧导航栏的结构。</em></p>
+<pre><code class="lang-markdown"><span class="hljs-section"># Summary</span>
+
+<span class="hljs-bullet">*</span> [<span class="hljs-string">简介</span>](<span class="hljs-link">README.md</span>)
+<span class="hljs-bullet">*</span> [<span class="hljs-string">第一章</span>](<span class="hljs-link">chapter1.md</span>)
+<span class="hljs-bullet">    *</span> [<span class="hljs-string">第一节</span>](<span class="hljs-link">chapter1/section1.md</span>)
+</code></pre>
+<p><strong>3. .gitignore</strong> (忽略文件)
+防止垃圾文件上传到仓库：</p>
+<pre><code class="lang-text">node_modules
+_book
+</code></pre>
+<h3 id="32-本地预览">3.2 本地预览</h3>
+<p>运行以下命令启动本地服务器：</p>
+<pre><code class="lang-bash">npm run start
+</code></pre>
+<p>然后在浏览器访问 <code>http://localhost:4000</code> 查看效果。</p>
+<h2 id="4-github-仓库与自动部署">4. GitHub 仓库与自动部署</h2>
+<h3 id="41-创建-github-仓库">4.1 创建 GitHub 仓库</h3>
+<p>在 GitHub 上创建一个新仓库（例如 <code>my-gitbook</code>），<strong>不需要</strong>初始化 README 或 .gitignore。</p>
+<h3 id="42-配置-github-actions-自动部署">4.2 配置 GitHub Actions (自动部署)</h3>
+<p>为了实现“推送到 GitHub 自动更新网页”，我们需要配置 Actions。</p>
+<ol>
+<li>在项目根目录创建目录：<code>.github/workflows/</code></li>
+<li>新建文件 <code>.github/workflows/deploy.yml</code>，填入以下内容：</li>
+</ol>
+<pre><code class="lang-yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">GitBook</span> <span class="hljs-string">to</span> <span class="hljs-string">GitHub</span> <span class="hljs-string">Pages</span>
+
+<span class="hljs-attr">on:</span>
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>  <span class="hljs-comment"># 监听 main 分支的变动</span>
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">deploy:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+    <span class="hljs-attr">permissions:</span>
+      <span class="hljs-attr">contents:</span> <span class="hljs-string">write</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span>
+
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Node.js</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-node@v4</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">node-version:</span> <span class="hljs-string">'20'</span>
+
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">dependencies</span>
+        <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">install</span>
+
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">GitBook</span>
+        <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">run</span> <span class="hljs-string">build</span>
+
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">to</span> <span class="hljs-string">GitHub</span> <span class="hljs-string">Pages</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">peaceiris/actions-gh-pages@v3</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">github_token:</span> <span class="hljs-string">${{</span> <span class="hljs-string">secrets.GITHUB_TOKEN</span> <span class="hljs-string">}}</span>
+          <span class="hljs-attr">publish_dir:</span> <span class="hljs-string">./_book</span>
+</code></pre>
+<h3 id="43-推送代码">4.3 推送代码</h3>
+<pre><code class="lang-bash">git init
+git add .
+git commit -m <span class="hljs-string">"Initial commit"</span>
+git branch -M main
+git remote add origin &lt;你的GitHub仓库地址&gt;
+git push -u origin main
+</code></pre>
+<h2 id="5-开启-github-pages">5. 开启 GitHub Pages</h2>
+<ol>
+<li>推送成功后，等待 Actions 运行完成（仓库页面 -&gt; Actions 标签 -&gt; 变绿）。</li>
+<li>进入仓库 <strong>Settings</strong> -&gt; <strong>Pages</strong>。</li>
+<li><strong>Source</strong>: 选择 <code>Deploy from a branch</code>。</li>
+<li><strong>Branch</strong>: 选择 <strong><code>gh-pages</code></strong> 分支 (该分支由脚本自动生成)。</li>
+<li>点击 <strong>Save</strong>。</li>
+</ol>
+<p>稍等片刻，顶部会出现你的访问地址：<code>https://&lt;用户名&gt;.github.io/&lt;仓库名&gt;/</code></p>
+<h2 id="6-日常维护">6. 日常维护</h2>
+<p>以后写文章只需要三步：</p>
+<ol>
+<li>在 <code>SUMMARY.md</code> 添加新章节链接。</li>
+<li>创建对应的 <code>.md</code> 文件并写入内容。</li>
+<li>提交代码：<pre><code class="lang-bash">git add .
+git commit -m <span class="hljs-string">"更新内容"</span>
+git push
+</code></pre>
+网站会自动更新。</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="chapter1.html" class="navigation navigation-next " aria-label="Next page: 第一章">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"搭建教程 (SOP)","level":"1.2","depth":1,"next":{"title":"第一章","level":"1.3","depth":1,"path":"chapter1.md","ref":"chapter1.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SOP.md","mtime":"2025-12-04T10:22:44.387Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2025-12-04T10:22:51.983Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
