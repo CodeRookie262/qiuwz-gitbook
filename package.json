@@ -1,0 +1,16 @@
+{
+  "name": "gitbook-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "honkit serve",
+    "build": "honkit build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "honkit": "^6.1.4"
+  }
+}
